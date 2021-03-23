@@ -16,8 +16,10 @@ typedef struct	s_env {
 	struct s_env	*next;
 }				t_env;
 
+int			ft_strcmp(char *, char *);
+void			ft_sort_env(char **envp);
 t_env		*ft_init_env(char **envp);
-void    print_lst(t_env *env);
+void    	print_lst(t_env *env);
 
 //------- CD -------//
 
