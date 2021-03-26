@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int		ft_strlen(char *str, int m)
+int		ft_strlen_gnl(char *str, int m)
 {
 	int	i;
 
@@ -42,7 +42,7 @@ char	*ft_substr(char *str, unsigned int start, int len)
 
 	if (!str)
 		return (NULL);
-	size = ft_strlen(str, 1);
+	size = ft_strlen_gnl(str, 1);
 	size = size - start;
 	if (size > len)
 		size = len;

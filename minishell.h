@@ -10,12 +10,17 @@
 # include <limits.h>
 
 # define BUFFER_SIZE 32
+# define SUCCESS 0
+# define FAILURE 1
 
 typedef struct	s_env {
 	char			*str;
 	struct s_env	*next;
 }				t_env;
 
+char		*ft_strdup(char *s1);
+char		**ft_list_to_array(t_env *env);
+int			ft_strlen(char *str);
 t_env		*ft_unset(char *, t_env *);
 int			ft_strcmp(char *, char *);
 int			ft_strncmp(char *, char *, int);
@@ -32,7 +37,7 @@ int		ft_cd(char *);
 
 //------- GNL -------//
 
-int		ft_strlen(char *str, int m);
+int		ft_strlen_gnl(char *str, int m);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_eol(char *str);
 int		ft_return(char **line, char *result, char **tmp, int ret);

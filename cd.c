@@ -1,11 +1,38 @@
 #include "minishell.h"
 
+int	ft_strlen(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+char	*ft_strdup(char *s1)
+{
+	char	*result;
+	int		i;
+
+	i = 0;
+	if (!(result = (char *)malloc(sizeof(char) * ft_strlen(s1) + 1)))
+		return (NULL);
+	while (s1[i])
+	{
+		result[i] = s1[i];
+		i++;
+	}
+	result[i] = '\0';
+	return (result);
+}
+
 int	ft_cd(char *directory)
 {
 	if (chdir(directory) == 0)
-		return(0);
+		return(SUCCESS);
 	printf("CHDIR error\n");
-	return (1);
+	return (FAILURE);
 }
 
 int		ft_strncmp(char *s1, char *s2, int len)
@@ -48,13 +75,16 @@ int main(int ac, char **av, char **envp)
 	(void)av;
     char 	*str;
 	t_env	*env;
+	char	**test;
 
 	str = NULL;
 	env = NULL;
 	env = ft_init_env(envp);
+	test = ft_list_to_array(env);
+
 	//ft_sort_env(envp);
-	env_variable_len(env->str);
-	while (1)
+	//env_variable_len(env->str);
+	/*while (1)
 	{
 		get_next_line(0, &str);
 		if (ft_strcmp(str, "cd") == 0)
@@ -66,9 +96,11 @@ int main(int ac, char **av, char **envp)
 		else if (ft_strcmp(str, "exit") == 0)
 			exit(1);
 		else if (ft_strncmp(str, "unset", 5) == 0)
-			env = ft_unset("USER", env);
+			env = ft_unset("LANG", env);
+		//else if (ft_strncmp(str, "export", 6) == 0)
+		//	env = ft_export("daniel", "bg", env);
 		else
 			printf("commande non reconnu\n");
-	}
+	}*/
     return 0; 
 }

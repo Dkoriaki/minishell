@@ -9,7 +9,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	len = ft_strlen(s1, 1) + ft_strlen(s2, 1);
+	len = ft_strlen_gnl(s1, 1) + ft_strlen_gnl(s2, 1);
 	if (!(result = (char *)malloc(sizeof(char) * len + 1)))
 		return (NULL);
 	if (s1)
@@ -45,9 +45,9 @@ int		ft_return(char **line, char *result, char **tmp, int ret)
 		*line = result;
 		return (1);
 	}
-	len = ft_strlen(result, 1) - (ft_strlen(result, 2) + 1);
-	*line = ft_substr(result, 0, ft_strlen(result, 2));
-	*tmp = ft_substr(result, ft_strlen(result, 2) + 1, len);
+	len = ft_strlen_gnl(result, 1) - (ft_strlen_gnl(result, 2) + 1);
+	*line = ft_substr(result, 0, ft_strlen_gnl(result, 2));
+	*tmp = ft_substr(result, ft_strlen_gnl(result, 2) + 1, len);
 	free(result);
 	result = NULL;
 	return (1);
