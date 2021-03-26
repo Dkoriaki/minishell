@@ -52,7 +52,7 @@ void    print_lst(t_env *env)
 {
     while (env)
     {
-        printf(" %s\n", env->str);
+        printf("%s\n", env->str);
         env = env->next;
     }
     printf("\n");

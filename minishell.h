@@ -16,10 +16,13 @@ typedef struct	s_env {
 	struct s_env	*next;
 }				t_env;
 
+t_env		*ft_unset(char *, t_env *);
 int			ft_strcmp(char *, char *);
+int			ft_strncmp(char *, char *, int);
 void			ft_sort_env(char **envp);
 t_env		*ft_init_env(char **envp);
 void    	print_lst(t_env *env);
+int			env_variable_len(char *);
 
 //------- CD -------//
 

@@ -8,6 +8,20 @@ int	ft_cd(char *directory)
 	return (1);
 }
 
+int		ft_strncmp(char *s1, char *s2, int len)
+{
+	int		i;
+
+	i = 0;
+	while ((s1[i] || s2[i]) && (i < len))
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return (0);
+}
+
 int		ft_strcmp(char *s1, char *s2)
 {
 	int		i;
@@ -38,7 +52,8 @@ int main(int ac, char **av, char **envp)
 	str = NULL;
 	env = NULL;
 	env = ft_init_env(envp);
-	ft_sort_env(envp);
+	//ft_sort_env(envp);
+	env_variable_len(env->str);
 	while (1)
 	{
 		get_next_line(0, &str);
@@ -49,7 +64,9 @@ int main(int ac, char **av, char **envp)
 		else if (ft_strcmp(str, "env") == 0)
 			print_lst(env);
 		else if (ft_strcmp(str, "exit") == 0)
-			exit(1);	
+			exit(1);
+		else if (ft_strncmp(str, "unset", 5) == 0)
+			env = ft_unset("USER", env);
 		else
 			printf("commande non reconnu\n");
 	}

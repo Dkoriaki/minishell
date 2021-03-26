@@ -1,17 +1,28 @@
 #include "minishell.h"
 
-int		ft_env_len(char **envp)
+/*int		ft_env_len(t_env *env)
 {
 	int		i;
 
 	i = 0;
-	while (envp[i] != NULL)
+	while (env)
 	{
+		env = env->next;
 		i++;
 	}
 	return (i);
 }
 
+void	ft_list_to_str(t_env *env)
+{
+	int		len;
+
+	len = ft_env_len(env);
+
+}*/
+
+
+/*
 void	ft_sort_env(char **envp)
 {
 	char	*tmp;
@@ -41,7 +52,7 @@ void	ft_sort_env(char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		printf("%s\n", envp[i]);
+		printf("%s", envp[i]);
 		i++;
 	}
-}
+}*/
