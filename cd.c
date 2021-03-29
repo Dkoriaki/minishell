@@ -80,10 +80,7 @@ int main(int ac, char **av, char **envp)
 	str = NULL;
 	env = NULL;
 	env = ft_init_env(envp);
-	test = ft_list_to_array(env);
-
-	//ft_sort_env(envp);
-	//env_variable_len(env->str);
+	ft_export(NULL, NULL, env);
 	/*while (1)
 	{
 		get_next_line(0, &str);

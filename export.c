@@ -13,8 +13,17 @@ int		ft_env_len(t_env *env)
 	return (i);
 }
 
-/*
-void	ft_sort_env(char **envp)
+int		ft_array_len(char **array)
+{
+	int		i;
+
+	i = 0;
+	while (array[i])
+		i++;
+	return (i);
+}
+
+char	**ft_sort_env(char **envp)
 {
 	char	*tmp;
 	int		i;
@@ -24,7 +33,7 @@ void	ft_sort_env(char **envp)
 	tmp = NULL;
 	i = 0;
 	j = 0;
-	env_len = ft_env_len(envp);
+	env_len = ft_array_len(envp);
 	while (i < env_len)
 	{
 		j = 0;
@@ -40,13 +49,8 @@ void	ft_sort_env(char **envp)
 		}
 		i++;
 	}
-	i = 0;
-	while (envp[i])
-	{
-		printf("%s", envp[i]);
-		i++;
-	}
-}*/
+	return (envp);
+}
 
 char	**ft_list_to_array(t_env *env)
 {
@@ -56,7 +60,7 @@ char	**ft_list_to_array(t_env *env)
 
 	i = 0;
 	nb_lines = ft_env_len(env);
-	print_lst(env);
+	//print_lst(env);
 	tab = (char **)malloc(sizeof(char *) * (nb_lines + 1));
 	if (!tab)
 		return (NULL);
@@ -67,25 +71,62 @@ char	**ft_list_to_array(t_env *env)
 		i++;
 	}
 	tab[i] = NULL;
-	int	y = 0;
-	while (tab[y])
-	{
-		printf("tab[%d] =    %s\n", y, tab[y]);
-		y++;
-	}
+	
 	return (tab);
 }
 
-/*t_env	ft_export(char *str, char *value, t_env *env)
+void	print_env_array(char **array)
 {
+	int		y;
+	int		x;
+
+	y = 0;
+	while (array[y])
+	{
+		x = 0;
+		write(1, "declare -x ", 11);
+		while(array[y][x])
+		{
+			write(1, &array[y][x], 1);
+			if (array[y][x] == '=')
+				write(1, "\"", 1);
+			x++;
+		}
+		write(1, "\"", 1);
+		write(1, "\n", 1);
+		y++;
+	}
+}
+
+char	*ft_re
+
+void	ft_export(char *str, char *value, t_env *env)
+{
+	char	**tab;
+	t_env	*cur;
+
 	//If 0 arguments, 
 	if(!str && !value)
 	{
+		tab = ft_list_to_array(env);
+		tab = ft_sort_env(tab);
+		print_env_array(tab);
 		//AFFICHAGE
 		//convertir la list en tab
-
+		// int	y = 0;
+		// while (tab[y])
+		// {
+			// printf("declare -x %s\n", tab[y]);
+			// y++;
+		// }
 	}
 	//IF str existe deja =
+	cur = ft_find_env(str, env);
+	if (cur != NULL)
+	{
+		cur->str = ft_replace_env_value(str, value, env);
+		return ;
+	}
 
 	//IF !str =
-}*/
+}

@@ -18,13 +18,17 @@ typedef struct	s_env {
 	struct s_env	*next;
 }				t_env;
 
+
+t_env		*ft_find_env(char *str, t_env *env);
+int			ft_array_len(char **array);
+void		ft_export(char *str, char *value, t_env *env);
 char		*ft_strdup(char *s1);
 char		**ft_list_to_array(t_env *env);
 int			ft_strlen(char *str);
 t_env		*ft_unset(char *, t_env *);
 int			ft_strcmp(char *, char *);
 int			ft_strncmp(char *, char *, int);
-void			ft_sort_env(char **envp);
+char		**ft_sort_env(char **envp);
 t_env		*ft_init_env(char **envp);
 void    	print_lst(t_env *env);
 int			env_variable_len(char *);

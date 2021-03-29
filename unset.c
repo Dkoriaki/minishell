@@ -1,14 +1,17 @@
 #include "minishell.h"
 
-int		ft_find_env(char *str, t_env *env)
+t_env	*ft_find_env(char *str, t_env *env)
 {
+	int		len;
+
+	len = ft_strlen(str);
 	while (env)
 	{
-		if (ft_strncmp(str, env->str, ft_strlen(str)) == 0)
-			return (SUCCESS);
+		if (ft_strncmp(str, env->str, len) == 0 && env->str[len] == '=')
+			return (env);
 		env = env->next;
 	}
-	return (FAILURE);
+	return (NULL);
 }
 
 int		env_variable_len(char *str)
@@ -31,7 +34,7 @@ t_env	*ft_unset(char *str, t_env *env)
 
 	cur = env;
 	prec = env;
-	if (ft_find_env(str, env) == FAILURE)
+	if (ft_find_env(str, env) == NULL)
 		return (env);
 	if (!env)
 		return (NULL);
