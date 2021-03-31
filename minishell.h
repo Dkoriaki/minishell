@@ -19,6 +19,10 @@ typedef struct	s_env {
 }				t_env;
 
 
+t_env  		*lst_add_back(t_env *env, char *str);
+char		*ft_strjoin_env(char *s1, char *s2);
+char		*ft_strjoin_gnl(char *s1, char *s2);
+char		*ft_strjoin(char *s1, char *s2);
 t_env		*ft_find_env(char *str, t_env *env);
 int			ft_array_len(char **array);
 void		ft_export(char *str, char *value, t_env *env);

@@ -7,7 +7,8 @@ t_env	*ft_find_env(char *str, t_env *env)
 	len = ft_strlen(str);
 	while (env)
 	{
-		if (ft_strncmp(str, env->str, len) == 0 && env->str[len] == '=')
+		if (ft_strncmp(str, env->str, len) == 0 && (env->str[len] == '='
+				|| env->str[len] == '\0'))
 			return (env);
 		env = env->next;
 	}

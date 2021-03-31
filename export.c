@@ -79,54 +79,68 @@ void	print_env_array(char **array)
 {
 	int		y;
 	int		x;
+	int		equal;
 
+	
 	y = 0;
 	while (array[y])
 	{
 		x = 0;
+		equal = 0;
 		write(1, "declare -x ", 11);
 		while(array[y][x])
 		{
 			write(1, &array[y][x], 1);
 			if (array[y][x] == '=')
+			{
 				write(1, "\"", 1);
+				equal = 1;
+			}
 			x++;
 		}
-		write(1, "\"", 1);
+		if (equal == 1)
+			write(1, "\"", 1);
 		write(1, "\n", 1);
 		y++;
 	}
 }
 
-char	*ft_re
+char	*ft_change_env(char *str, char *value, t_env *env)
+{
+	char	*out;
+
+	out = ft_strjoin_env(str, value);
+	return(out);
+}
 
 void	ft_export(char *str, char *value, t_env *env)
 {
 	char	**tab;
 	t_env	*cur;
-
+	char	*tmp;
 	//If 0 arguments, 
 	if(!str && !value)
 	{
 		tab = ft_list_to_array(env);
 		tab = ft_sort_env(tab);
 		print_env_array(tab);
-		//AFFICHAGE
-		//convertir la list en tab
-		// int	y = 0;
-		// while (tab[y])
-		// {
-			// printf("declare -x %s\n", tab[y]);
-			// y++;
-		// }
+		return ;
 	}
 	//IF str existe deja =
 	cur = ft_find_env(str, env);
 	if (cur != NULL)
 	{
-		cur->str = ft_replace_env_value(str, value, env);
+		if (!value)
+			return ;
+		cur->str = ft_change_env(str, value, env);
 		return ;
 	}
-
-	//IF !str =
+	//cas : export -> "str=value" && "str="
+	if (value)
+	{
+		tmp = ft_strjoin_env(str, value);
+		env = lst_add_back(env, tmp);
+	}
+	else // cas : "export str"
+		env = lst_add_back(env, str);
 }

@@ -75,7 +75,7 @@ char	*ft_result(char *buffer, char *result, int ret)
 
 	buffer[ret] = '\0';
 	cpy = result;
-	res = ft_strjoin(result, buffer);
+	res = ft_strjoin_gnl(result, buffer);
 	free(cpy);
 	return (res);
 }
