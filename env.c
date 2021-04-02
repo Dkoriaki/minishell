@@ -58,7 +58,13 @@ void    print_lst(t_env *env)
     printf("\n");
 }
 
-/*int		ft_env(t_env *env)
+void	ft_env(t_env *env)
 {
-	while ()
-}*/
+	while (env)
+	{
+		if(ft_charchr(env->str, '=') == SUCCESS)
+			printf("%s\n", env->str);
+		env = env->next;
+	}
+	write(1, "\n", 1);
+}

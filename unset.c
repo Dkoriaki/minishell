@@ -36,7 +36,10 @@ t_env	*ft_unset(char *str, t_env *env)
 	cur = env;
 	prec = env;
 	if (ft_find_env(str, env) == NULL)
+	{
+		write(1, "\nLOLOLOL\n", 9);
 		return (env);
+	}
 	if (!env)
 		return (NULL);
 	if (ft_strncmp(str, env->str, env_variable_len(env->str)) == 0)

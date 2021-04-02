@@ -19,34 +19,47 @@ typedef struct	s_env {
 }				t_env;
 
 
+
+void		ft_env(t_env *env);
 t_env  		*lst_add_back(t_env *env, char *str);
-char		*ft_strjoin_env(char *s1, char *s2);
-char		*ft_strjoin_gnl(char *s1, char *s2);
-char		*ft_strjoin(char *s1, char *s2);
 t_env		*ft_find_env(char *str, t_env *env);
-int			ft_array_len(char **array);
-void		ft_export(char *str, char *value, t_env *env);
-char		*ft_strdup(char *s1);
-char		**ft_list_to_array(t_env *env);
-int			ft_strlen(char *str);
 t_env		*ft_unset(char *, t_env *);
-int			ft_strcmp(char *, char *);
-int			ft_strncmp(char *, char *, int);
-char		**ft_sort_env(char **envp);
 t_env		*ft_init_env(char **envp);
 void    	print_lst(t_env *env);
 int			env_variable_len(char *);
 
+
+
+
 //------- CD -------//
 
-int		ft_cd(char *);
+int			ft_cd(char *directory, t_env *env);
+int			ft_save_oldpwd(t_env *env);
 
-//------------------//
+//------- UTILS -------//
+
+int			ft_charchr(char *str, char c);
+char		*ft_strjoin(char *s1, char *s2);
+int			ft_strcmp(char *, char *);
+int			ft_strncmp(char *, char *, int);
+char		*ft_strdup(char *s1);
+int			ft_strlen(char *str);
+char		*ft_strjoin_env(char *s1, char *s2);
+
+//------- EXPORT -------//
+
+int			ft_env_len(t_env *env);
+int			ft_array_len(char **array);
+char		**ft_sort_env(char **envp);
+char		**ft_list_to_array(t_env *env);
+void		print_env_array(char **array);
+char		*ft_change_env(char *str, char *value);
+void		ft_export(char *str, char *value, t_env *env);
 
 //------- GNL -------//
 
 int		ft_strlen_gnl(char *str, int m);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin_gnl(char *s1, char *s2);
 int		ft_eol(char *str);
 int		ft_return(char **line, char *result, char **tmp, int ret);
 int		get_next_line(int fd, char **line);

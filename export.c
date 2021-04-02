@@ -132,7 +132,7 @@ void	ft_export(char *str, char *value, t_env *env)
 	{
 		if (!value)
 			return ;
-		cur->str = ft_change_env(str, value, env);
+		cur->str = ft_change_env(str, value);
 		return ;
 	}
 	//cas : export -> "str=value" && "str="

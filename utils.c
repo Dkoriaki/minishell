@@ -1,5 +1,19 @@
 #include "minishell.h"
 
+int	ft_charchr(char *str, char c)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (SUCCESS);
+		i++;
+	}
+	return (FAILURE);
+}
+
 int	ft_strlen(char *str)
 {
 	int		i;

@@ -1,12 +1,6 @@
 #include "minishell.h"
 
-int	ft_cd(char *directory)
-{
-	if (chdir(directory) == 0)
-		return(SUCCESS);
-	printf("CHDIR error\n");
-	return (FAILURE);
-}
+
 
 void	ft_pwd(void)
 {
@@ -25,10 +19,26 @@ int main(int ac, char **av, char **envp)
 	str = NULL;
 	env = NULL;
 	env = ft_init_env(envp);
+
+	ft_save_oldpwd(env);
+	/*
 	ft_export(NULL, NULL, env);
-	ft_export("ZT", "", env);
+	ft_export("ZT", "test", env);
+	printf("\n\n\n-------------------------------------\n\n\n");
+	ft_unset("ZT", env);
+	ft_export(NULL, NULL, env);
+	ft_export("ZTT", "", env);
 	printf("\n\n\n-------------------------------------\n\n\n");
 	ft_export(NULL, NULL, env);
+	ft_env(env);*/
+	/*
+	ft_export("ZT", "", env);
+	ft_export("ZTT", NULL, env);
+	ft_env(env);
+	printf("\n\n\n-------------------------------------\n\n\n");
+	ft_export(NULL, NULL, env);
+	ft_pwd();*/
+
 	/*while (1)
 	{
 		get_next_line(0, &str);
