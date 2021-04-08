@@ -18,8 +18,9 @@ typedef struct	s_env {
 	struct s_env	*next;
 }				t_env;
 
-
-
+void		ft_echo(char *str, char *n);
+char		**ft_split(char const *str, char c);
+void		go_to_home(t_env *env);
 void		ft_env(t_env *env);
 t_env  		*lst_add_back(t_env *env, char *str);
 t_env		*ft_find_env(char *str, t_env *env);
@@ -35,6 +36,7 @@ int			env_variable_len(char *);
 
 int			ft_cd(char *directory, t_env *env);
 int			ft_save_oldpwd(t_env *env);
+int			ft_save_pwd(t_env *env);
 
 //------- UTILS -------//
 

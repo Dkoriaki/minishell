@@ -105,7 +105,7 @@ void	print_env_array(char **array)
 	}
 }
 
-char	*ft_change_env(char *str, char *value, t_env *env)
+char	*ft_change_env(char *str, char *value)
 {
 	char	*out;
 

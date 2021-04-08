@@ -60,6 +60,9 @@ int		get_next_line(int fd, char **line)
 	char			*buffer;
 	char			*result;
 
+	//FAUT ENLEVER CA
+	write(STDOUT_FILENO, "minishell : ", ft_strlen("minishell : "));
+	//
 	if (fd <= -1 || !line || BUFFER_SIZE <= 0)
 		return (-1);
 	if (!(buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1)))
