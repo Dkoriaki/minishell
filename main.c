@@ -8,19 +8,21 @@ void	ft_pwd(void)
 	printf("%s\n", getcwd(path, sizeof(path)));
 }
 
+void	ft_reset_stdout(int fd)
+{
+	if (fd != STDOUT_FILENO)
+	{
+		dup2(fd, STDOUT_FILENO);
+		//close(fd);
+	}
+}
+
 void	ft_check_redirection(int fd, char **tab)
 {
 	int		i;
 	int fd_redir;
 
 	i = 0;
-	dup(fd);
-	if (fd != STDOUT_FILENO)
-	{
-		printf("PPPPPPPPPPPP");
-		dup2(fd, STDOUT_FILENO);
-		close(fd);
-	}
 	while (tab[i])
 	{
 		if (ft_strcmp(tab[i], ">") == 0)
@@ -94,6 +96,7 @@ int main(int ac, char **av, char **envp)
 			ft_unset(tab[1], env);
 		else if (ft_strncmp(str, "exit", 4) == 0)
 			exit(1);
+		ft_reset_stdout(stdout_save);
 	}
     return 0; 
 }
