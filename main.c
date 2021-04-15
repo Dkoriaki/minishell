@@ -5,7 +5,9 @@
 void	ft_pwd(void)
 {
 	char	path[PATH_MAX];
-	printf("%s\n", getcwd(path, sizeof(path)));
+	getcwd(path, sizeof(path));
+	write(STDOUT_FILENO, &path, ft_strlen(path));
+	write(STDOUT_FILENO, "\n", 1);
 }
 
 void	ft_reset_stdout(int fd)
@@ -42,32 +44,15 @@ int main(int ac, char **av, char **envp)
 	(void)av;
     char 	*str;
 	t_env	*env;
-	char	**test;
 	int    stdout_save;
 
 	str = NULL;
 	env = NULL;
 	env = ft_init_env(envp);
 
+	//char	*test[] = {"lp",  NULL};
+	//	execve(test[0], test, NULL);
 
-	/*while (1)
-	{
-		get_next_line(0, &str);
-		if (ft_strcmp(str, "cd") == 0)
-			ft_cd("..");
-		else if (ft_strcmp(str, "pwd") == 0)
-			ft_pwd();
-		else if (ft_strcmp(str, "env") == 0)
-			print_lst(env);
-		else if (ft_strcmp(str, "exit") == 0)
-			exit(1);
-		else if (ft_strncmp(str, "unset", 5) == 0)
-			env = ft_unset("LANG", env);
-		//else if (ft_strncmp(str, "export", 6) == 0)
-		//	env = ft_export("daniel", "bg", env);
-		else
-			printf("commande non reconnu\n");
-	}*/
 	
 	int	ret = 1;
 	char	**tab;
@@ -87,8 +72,11 @@ int main(int ac, char **av, char **envp)
 			ft_env(env);
 		//Va falloir modifier ca
 		//------------------------------------//
-		else if (ft_strncmp(tab[0], "export", 6) == 0 && tab[1] == NULL)
+		else if (ft_strncmp(tab[0], "export", 6) == 0 && (tab[1] == NULL || ft_strcmp(">", tab[1]) == 0))
+		{
+			//write(STDOUT_FILENO, "P", 1);
 			ft_export(NULL, NULL, env);
+		}
 		//------------------------------------//
 		else if (ft_strncmp(tab[0], "export", 6) == 0)
 			ft_export(tab[1], tab[2], env);
@@ -96,6 +84,8 @@ int main(int ac, char **av, char **envp)
 			ft_unset(tab[1], env);
 		else if (ft_strncmp(str, "exit", 4) == 0)
 			exit(1);
+		else
+			bin_fonction(tab, env);
 		ft_reset_stdout(stdout_save);
 	}
     return 0; 

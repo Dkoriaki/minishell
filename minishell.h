@@ -18,6 +18,12 @@ typedef struct	s_env {
 	struct s_env	*next;
 }				t_env;
 
+
+int			exec_bin(char *path, char **cmd);
+int			bin_is_exist(char *path, char **cmd);
+int			is_exist(char *path);
+char		*ft_env_value(char *str, t_env *env);
+int			bin_fonction(char **argv, t_env *env);
 void		ft_echo(char *str, char *n);
 char		**ft_split(char const *str, char c);
 void		go_to_home(t_env *env);

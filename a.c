@@ -2,7 +2,25 @@
 #include <unistd.h>
 #include <fcntl.h>
 
+#include <unistd.h>
+#include <stdio.h>
 
+void	ls(void)
+{
+	char	*argv[] = {"/bin/ls"};
+	char	*newargv[] = {"/bin/ls", NULL};
+	printf("yes aye!!!111\n");
+	execve(argv[0], newargv, NULL);
+	perror("execve");
+	printf("yes aye643634656436");
+}
+
+int	main(void)
+{
+	ls();
+	return (0);
+}
+/*
 int		main(void)
 {
 	int fd_redir;
@@ -21,4 +39,4 @@ int		main(void)
     close(stdout_save);
     write(STDOUT_FILENO, "writing on stdout2\n", 19);
 	return (0);
-}
+}*/

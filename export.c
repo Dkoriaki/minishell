@@ -87,20 +87,20 @@ void	print_env_array(char **array)
 	{
 		x = 0;
 		equal = 0;
-		write(1, "declare -x ", 11);
+		write(STDOUT_FILENO, "declare -x ", 11);
 		while(array[y][x])
 		{
-			write(1, &array[y][x], 1);
+			write(STDOUT_FILENO, &array[y][x], 1);
 			if (array[y][x] == '=')
 			{
-				write(1, "\"", 1);
+				write(STDOUT_FILENO, "\"", 1);
 				equal = 1;
 			}
 			x++;
 		}
 		if (equal == 1)
-			write(1, "\"", 1);
-		write(1, "\n", 1);
+			write(STDOUT_FILENO, "\"", 1);
+		write(STDOUT_FILENO, "\n", 1);
 		y++;
 	}
 }

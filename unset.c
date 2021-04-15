@@ -1,5 +1,33 @@
 #include "minishell.h"
 
+char	*ft_env_value(char *str, t_env *env)
+{
+	int		len;
+	t_env	*cur;
+	int		i;
+	int		j;
+	char	*ret;
+
+	len = ft_strlen(str);
+	cur = ft_find_env(str, env);
+	if (cur == NULL)
+		return (NULL);
+	i = ft_strlen(cur->str) - (len + 1);
+	ret = malloc(sizeof(char*) * (i + 1));
+	if (ret == NULL)
+		return (NULL);
+	i = len + 1;
+	j = 0;
+	while (cur->str[i])
+	{
+		ret[j] = cur->str[i];
+		i++;
+		j++;
+	}
+	ret[j] = '\0';
+	return (ret);
+}
+
 t_env	*ft_find_env(char *str, t_env *env)
 {
 	int		len;
@@ -24,7 +52,6 @@ int		env_variable_len(char *str)
 	{
 		len++;
 	}
-	//printf("|%s| len = %d\n", str, len);
 	return (len);
 }
 
@@ -37,7 +64,7 @@ t_env	*ft_unset(char *str, t_env *env)
 	prec = env;
 	if (ft_find_env(str, env) == NULL)
 	{
-		write(1, "\nLOLOLOL\n", 9);
+		write(STDOUT_FILENO, "\nLOLOLOL\n", 9);
 		return (env);
 	}
 	if (!env)
