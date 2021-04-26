@@ -57,6 +57,8 @@ int main(int ac, char **av, char **envp)
 	int	ret = 1;
 	char	**tab;
 	stdout_save = dup(STDOUT_FILENO);
+	ft_print_env_value("$USE", env);
+	/*
 	while((ret = get_next_line(0, &str)) > 0)
 	{
 		
@@ -83,10 +85,10 @@ int main(int ac, char **av, char **envp)
 		else if (ft_strncmp(tab[0], "unset", 5) == 0)
 			ft_unset(tab[1], env);
 		else if (ft_strncmp(str, "exit", 4) == 0)
-			exit(1);
+			exit(ft_exit(tab));
 		else
 			bin_fonction(tab, env);
 		ft_reset_stdout(stdout_save);
-	}
+	}*/
     return 0; 
 }

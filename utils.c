@@ -1,5 +1,78 @@
 #include "minishell.h"
 
+void	ft_print_env_value(char *str, t_env *env)
+{
+	int		i;
+	char	*ret;
+
+	i = 1;
+	ret = ft_env_value(&str[i], env);
+	if (ret == NULL)
+	{
+		ft_putstr_fd("\n", STDOUT_FILENO);
+		return ;
+	}
+	ft_putstr_fd(ret, STDOUT_FILENO);
+	ft_putstr_fd("\n", STDOUT_FILENO);
+	free(ret);
+}
+
+int	ft_atoi(char *str)
+{
+	int	i;
+	int	negativ;
+	int	nb;
+	int	count;
+
+	i = 0;
+	negativ = 0;
+	nb = 0;
+	count = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || (str[i] == ' '))
+		i++;
+	while (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			negativ++;
+		count++;
+		if (count > 1)
+			return (0);
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+		nb = nb * 10 + (str[i++] - 48);
+	return ((negativ != 0) ? -nb : nb);
+}
+
+void	ft_putstr_fd(char *str, int fd)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		write(fd, &str[i], 1);
+		i++;
+	}
+}
+
+int	ft_isnum(char *str)
+{
+	int		i;
+
+	i = 0;
+	if (str)
+	{
+		while (str[i])
+		{
+			if (str[i] <= '0' || str[i] >= '9')
+				return (FAILURE);
+			i++;
+		}
+	}
+	return (SUCCESS);
+}
+
 int	ft_charchr(char *str, char c)
 {
 	int		i;

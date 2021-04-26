@@ -19,8 +19,10 @@ typedef struct	s_env {
 }				t_env;
 
 
-int			exec_bin(char *path, char **cmd);
-int			bin_is_exist(char *path, char **cmd);
+void		ft_print_env_value(char *str, t_env *env);
+int			ft_exit(char **args);
+int			exec_bin(char *path, char **cmd, char **env_cpy);
+int			bin_is_exist(char *path, char **cmd, t_env *env);
 int			is_exist(char *path);
 char		*ft_env_value(char *str, t_env *env);
 int			bin_fonction(char **argv, t_env *env);
@@ -46,6 +48,9 @@ int			ft_save_pwd(t_env *env);
 
 //------- UTILS -------//
 
+int			ft_atoi(char *str);
+void		ft_putstr_fd(char *str, int fd);
+int			ft_isnum(char *str);
 int			ft_charchr(char *str, char c);
 char		*ft_strjoin(char *s1, char *s2);
 int			ft_strcmp(char *, char *);
