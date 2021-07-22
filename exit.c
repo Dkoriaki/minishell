@@ -13,7 +13,7 @@ int		ft_exit(char **args)
 	else if (args[1] && ft_isnum(args[1]) == FAILURE)
 	{
 		ret = 255;
-		ft_putstr_fd("minishell: exit", STDOUT_FILENO);
+		ft_putstr_fd("minishell: exit:", STDOUT_FILENO);
 		ft_putstr_fd(args[1], STDOUT_FILENO);
 		ft_putstr_fd("numeric argument required\n", STDOUT_FILENO);
 	}

@@ -9,15 +9,44 @@ void	ls(void)
 {
 	char	*argv[] = {"/bin/ls"};
 	char	*newargv[] = {"/bin/ls", NULL};
-	printf("yes aye!!!111\n");
 	execve(argv[0], newargv, NULL);
 	perror("execve");
-	printf("yes aye643634656436");
+}
+
+void	grep(void)
+{
+	char	*argv[] = {"/usr/bin/grep"};
+	char	*newargv[] = {"/usr/bin/grep", "get", NULL};
+	execve(argv[0], newargv, NULL);
+	perror("execve");
+}
+
+void	wc(void)
+{
+	char	*argv[] = {"/usr/bin/wc"};
+	char	*newargv[] = {"/usr/bin/wc", NULL};
+	execve(argv[0], newargv, NULL);
+	perror("execve");
+}
+
+void	exec_cmd(int i)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == 0)
 }
 
 int	main(void)
 {
-	ls();
+	int		i = 0;
+	//ls();
+	//grep();
+	while (i < 3)
+	{
+		exec_cmd(i);
+		i++;
+	}
 	return (0);
 }
 /*
