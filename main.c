@@ -57,8 +57,8 @@ int main(int ac, char **av, char **envp)
 	int	ret = 1;
 	char	**tab;
 	stdout_save = dup(STDOUT_FILENO);
-	ft_print_env_value("$USE", env);
-	/*
+	//ft_print_env_value("$USE", env);
+	
 	while((ret = get_next_line(0, &str)) > 0)
 	{
 		
@@ -89,6 +89,6 @@ int main(int ac, char **av, char **envp)
 		else
 			bin_fonction(tab, env);
 		ft_reset_stdout(stdout_save);
-	}*/
+	}
     return 0; 
 }
